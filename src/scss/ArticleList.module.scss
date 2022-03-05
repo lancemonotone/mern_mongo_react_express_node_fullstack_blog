@@ -1,0 +1,22 @@
+.listStyle {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      margin-bottom: 2rem;
+      border-bottom: 2px solid black;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      & > a {
+        text-decoration: none;
+        color: black;
+      }
+    }
+  }
+
+}

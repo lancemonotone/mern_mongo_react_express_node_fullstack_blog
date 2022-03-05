@@ -1,0 +1,42 @@
+body {
+  background: #a9a9a9
+}
+
+* {
+  box-sizing: border-box;
+  margin:     0;
+  padding:    0
+}
+
+body, html {
+  font-family: Karla, sans-serif
+}
+
+main {
+  grid-gap:             1rem;
+  align-items:          center;
+  grid-template-columns:500px;
+  justify-content:      center
+}
+
+main, nav ul {
+  display: grid
+}
+
+nav ul {
+  grid-gap:          1rem;
+  grid-auto-columns: minmax(auto, 1fr);
+  grid-auto-flow:    column;
+  list-style:        none
+}
+
+nav a {
+  color:           #006568;
+  text-decoration: none
+}
+
+nav a.active {
+  text-decoration: underline
+}
+
+/*# sourceMappingURL=main.33d7804a.css.map*/

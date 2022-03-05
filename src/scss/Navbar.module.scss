@@ -1,0 +1,34 @@
+nav {
+  ul {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-bottom: 5px solid black;
+    grid-auto-columns: minmax(auto, 1fr);
+    grid-auto-flow: column;
+
+    li {
+      display: grid;
+
+      a {
+        font-weight: bold;
+        width: 100%;
+        padding: 1rem 0;
+        text-align: center;
+        text-decoration: none;
+        color: black;
+
+        &:global.active {
+          color: white;
+          background-color: black;
+        }
+
+        &:hover {
+          color: black;
+          background-color: #c5c5c5;
+        }
+      }
+    }
+  }
+}
