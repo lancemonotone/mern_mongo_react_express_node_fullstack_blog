@@ -1,13 +1,15 @@
-import React from 'react';
 import {useEffect, useState} from 'react';
-import articles from '../data/articles'
-import ArticleList from '../components/ArticleList';
 import {useParams} from 'react-router-dom';
+import articles from '../data/articles'
 import NotFoundPage from './NotFoundPage';
+import Comments from '../components/Comments'
+import RelatedArticles from '../components/RelatedArticles';
+import Upvote from '../components/Upvote';
 
 const ArticlePage = () => {
   const params = useParams()
-  const article = articles.find( article => article.name === params.name )
+  const name = params.name
+  const article = articles.find( article => article.name === name )
 
   const [articleInfo, setArticleInfo] = useState( {
     upvotes : 0,
@@ -15,10 +17,14 @@ const ArticlePage = () => {
   } )
 
   useEffect( () => {
-    setArticleInfo( {
-      upvotes: 3
-    } )
-  }, [] )
+    const fetchData = () => {
+      fetch( `/api/articles/name/${name}` )
+        .then( response => response.json() )
+        .then( data => setArticleInfo( data ) );
+    }
+    fetchData()
+
+  }, [name] )
 
   if ( !article ) return <NotFoundPage/>
 
@@ -26,11 +32,11 @@ const ArticlePage = () => {
 
   return (
     <>
-      <h2>{article.title}</h2>
-      <p>Upvotes: {articleInfo.upvotes}</p>
+      <h1>{article.title}</h1>
+      <Upvote upvotes={articleInfo.upvotes}/>
       {article.content.map( ( paragraph, key ) => <p key={key}>{paragraph}</p> )}
-      <h4>Related Articles</h4>
-      <ArticleList className={'relatedArticles'} articles={relatedArticles}/>
+      <Comments comments={articleInfo.comments}/>
+      <RelatedArticles relatedArticles={relatedArticles}/>
     </>
   )
 }

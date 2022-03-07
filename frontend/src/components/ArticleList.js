@@ -10,7 +10,7 @@ const ArticleList = ( {articles} ) => {
           return (
             <li key={key}>
               <Link to={`/article/${article.name}`}>
-                <h3>{article.title}</h3>
+                <h4>{article.title}</h4>
               </Link>
               <p>{article.content[0].substr( 0, 150 )} ...</p>
             </li>
