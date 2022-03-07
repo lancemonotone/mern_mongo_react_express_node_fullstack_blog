@@ -4,12 +4,14 @@
   "private": true,
   "description": "Fullstack app",
   "dependencies": {
+    "http-proxy-middleware": "^2.0.3",
+    "node-sass": "^7.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-icons": "^4.3.1",
     "react-lorem-ipsum": "^1.4.10",
     "react-router-dom": "^6.2.2",
     "react-scripts": "^5.0.0",
-    "node-sass": "^7.0.1",
     "sass": "^1.49.9",
     "whatwg-fetch": "^3.6.2"
   },
