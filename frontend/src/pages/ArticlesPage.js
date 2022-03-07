@@ -1,3 +1,4 @@
+import React from 'react';
 import ArticleList from '../components/ArticleList';
 import articles from '../data/articles';
 import relatedArticles from '../scss/ArticlePage.module.scss'

@@ -1,0 +1,29 @@
+{
+  "name": "fullstack-article-server",
+  "version": "1.0.0",
+  "description": "Mongoose, Express",
+  "main": "articleServer.js",
+  "scripts": {
+    "start": "node backend/articleServer.js",
+    "server": "nodemon backend/articleServer.js"
+  },
+  "author": "Lance Monotone",
+  "license": "MIT",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "express-async-handler": "^1.2.0",
+    "mongodb": "^4.4.1",
+    "mongoose": "^6.2.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
