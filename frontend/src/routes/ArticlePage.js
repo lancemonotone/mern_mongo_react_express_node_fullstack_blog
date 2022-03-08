@@ -17,13 +17,9 @@ const ArticlePage = () => {
   } )
 
   useEffect( () => {
-    const fetchData = () => {
-      fetch( `/api/articles/name/${name}` )
-        .then( response => response.json() )
-        .then( data => setArticleInfo( data ) );
-    }
-    fetchData()
-
+    fetch( `/api/articles/name/${name}` )
+      .then( response => response.json() )
+      .then( data => setArticleInfo( data ) );
   }, [name] )
 
   if ( !article ) return <NotFoundPage/>
@@ -33,9 +29,9 @@ const ArticlePage = () => {
   return (
     <>
       <h1>{article.title}</h1>
-      <Upvote upvotes={articleInfo.upvotes}/>
+      <Upvote upvotes={articleInfo.upvotes} name={name} setArticleInfo={setArticleInfo}/>
       {article.content.map( ( paragraph, key ) => <p key={key}>{paragraph}</p> )}
-      <Comments comments={articleInfo.comments}/>
+      <Comments comments={articleInfo.comments} name={name} setArticleInfo={setArticleInfo}/>
       <RelatedArticles relatedArticles={relatedArticles}/>
     </>
   )
