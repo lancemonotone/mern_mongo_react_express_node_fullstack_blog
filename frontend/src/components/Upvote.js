@@ -2,9 +2,11 @@ import PropTypes from 'prop-types';
 import styles from '../scss/Upvotes.module.scss'
 import {BsHandThumbsUp} from 'react-icons/bs'
 
-const Upvote = ( {upvotes} ) => {
+const Upvote = ( {upvotes, name, setArticleInfo} ) => {
   const upvoteArticle = () => {
-    fetch( `/api/articles/` )
+    fetch( `/api/articles/name/${name}/upvote`, {method: 'PUT'} )
+      .then( res => res.json() )
+      .then( body => setArticleInfo( body ) )
   }
 
   return (

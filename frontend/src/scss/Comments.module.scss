@@ -1,4 +1,21 @@
+.commentList {
+  margin-top: 2rem;
+}
+
 .commentsStyle {
+  h3 button {
+    font-size: larger;
+    font-weight: bold;
+    float: right;
+    width: 2rem;
+    border: none;
+    background-color: transparent;
+
+    &:hover {
+      color: green;
+    }
+  }
+
   h3 {
     font-size: larger;
   }

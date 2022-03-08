@@ -1,12 +1,12 @@
 import React from 'react';
 import {Routes, Route} from 'react-router-dom';
-import '../scss/App.module.scss'
-import Navigation from './Navigation';
-import HomePage from '../pages/HomePage';
-import AboutPage from '../pages/AboutPage';
-import ArticlesPage from '../pages/ArticlesPage';
-import ArticlePage from '../pages/ArticlePage';
-import NotFoundPage from '../pages/NotFoundPage';
+import './scss/App.module.scss'
+import Navigation from './components/Navigation';
+import HomePage from './routes/HomePage';
+import AboutPage from './routes/AboutPage';
+import ArticlesPage from './routes/ArticlesPage';
+import ArticlePage from './routes/ArticlePage';
+import NotFoundPage from './routes/NotFoundPage';
 
 const App = () => {
   return (
