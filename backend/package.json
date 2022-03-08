@@ -4,8 +4,8 @@
   "description": "Mongoose, Express",
   "main": "articleServer.js",
   "scripts": {
-    "start": "node backend/articleServer.js",
-    "server": "nodemon backend/articleServer.js"
+    "start": "node articleServer.js",
+    "server": "nodemon articleServer.js"
   },
   "author": "Lance Monotone",
   "license": "MIT",
