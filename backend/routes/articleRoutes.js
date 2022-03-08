@@ -1,10 +1,8 @@
-const express = require( 'express' )
-const router = express.Router()
+const router = require( 'express' ).Router()
 
 const {
   getArticles,
-  getArticleByName,
-  getArticleById,
+  getArticle,
   createArticle,
   updateArticle,
   deleteArticle,
@@ -15,16 +13,18 @@ const {
 // Basic GET and POST
 router.route( '/' ).get( getArticles ).post( createArticle )
 
-// GET by 'name'
-router.route( '/name/:name' ).get( getArticleByName )
-
 // GET, PUT, DELETE by 'id'
-router.route( '/id/:id' ).get( getArticleById ).put( updateArticle ).delete( deleteArticle )
+router.route( '/:id' ).get( getArticle ).put( updateArticle ).delete( deleteArticle )
 
-// PUT upvote by 'name'
+// GET by 'name'
+router.route( '/name/:name' ).get( getArticle )
+
+// PUT upvote by 'id' or 'name'
+router.route( '/:id/upvote' ).put( upvoteArticle )
 router.route( '/name/:name/upvote' ).put( upvoteArticle )
 
-// PUT comment by 'name'
+// PUT comment by 'id' or 'name'
+router.route( '/:id/add-comment' ).put( commentArticle )
 router.route( '/name/:name/add-comment' ).put( commentArticle )
 
 module.exports = router

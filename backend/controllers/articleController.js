@@ -11,22 +11,13 @@ const getArticles = asyncHandler( async ( req, res ) => {
 } )
 
 // @desc Get articles
-// @route GET /api/articles
+// @route GET /api/articles/:id
+// @route GET /api/articles/name/:name
 // @access Private
-const getArticleByName = asyncHandler( async ( req, res ) => {
-  const article = await Article.findOne( {name: req.params.name} )
-  if ( !article ) {
-    res.status( 400 )
-    throw new Error( 'Article not found' )
-  }
-  res.status( 200 ).json( article )
-} )
+const getArticle = asyncHandler( async ( req, res ) => {
+  const findBy = req.params.id ? {id: req.params.id} : {name: req.params.name}
+  const article = await Article.findOne( findBy )
 
-// @desc Get articles
-// @route GET /api/articles
-// @access Private
-const getArticleById = asyncHandler( async ( req, res ) => {
-  const article = await Article.findById( req.params.id )
   if ( !article ) {
     res.status( 400 )
     throw new Error( 'Article not found' )
@@ -81,11 +72,13 @@ const deleteArticle = asyncHandler( async ( req, res ) => {
 } )
 
 // @desc Upvote article
+// @route PUT /api/articles/:id/upvote
 // @route PUT /api/articles/name/:name/upvote
 // @access Private
 const upvoteArticle = asyncHandler( async ( req, res ) => {
-  const name = {name: req.params.name}
-  const article = await Article.findOne( name )
+  const findBy = req.params.id ? {id: req.params.id} : {name: req.params.name}
+  const article = await Article.findOne( findBy )
+
   if ( !article ) {
     res.status( 400 )
     throw new Error( 'Article not found' )
@@ -93,7 +86,7 @@ const upvoteArticle = asyncHandler( async ( req, res ) => {
 
   const update = {upvotes: article.upvotes + 1}
 
-  const updatedArticle = await Article.findOneAndUpdate( name, update, {
+  const updatedArticle = await Article.findOneAndUpdate( findBy, update, {
     new: true
   } )
 
@@ -102,11 +95,13 @@ const upvoteArticle = asyncHandler( async ( req, res ) => {
 
 // @desc Comment article
 // @route PUT /api/articles/name/:name/add-comment
+// @route PUT /api/articles/:id/add-comment
 // @access Private
 const commentArticle = asyncHandler( async ( req, res ) => {
+  const findBy = req.params.id ? {id: req.params.id} : {name: req.params.name}
   const {username, text} = req.body
-  const name = {name: req.params.name}
-  const article = await Article.findOne( name )
+
+  const article = await Article.findOne( findBy )
 
   if ( !article ) {
     res.status( 400 )
@@ -115,7 +110,7 @@ const commentArticle = asyncHandler( async ( req, res ) => {
 
   const update = {comments: article.comments.concat( {username, text} )}
 
-  const updatedArticle = await Article.findOneAndUpdate( name, update, {
+  const updatedArticle = await Article.findOneAndUpdate( findBy, update, {
     new: true
   } )
 
@@ -124,8 +119,7 @@ const commentArticle = asyncHandler( async ( req, res ) => {
 
 module.exports = {
   getArticles,
-  getArticleByName,
-  getArticleById,
+  getArticle,
   createArticle,
   updateArticle,
   deleteArticle,
